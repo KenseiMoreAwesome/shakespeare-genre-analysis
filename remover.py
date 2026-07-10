@@ -40,7 +40,7 @@ def remove_direction(inputFolder, outputFolder):
     print(f"Cleaned files saved in: {outputFolder}")
 
 if __name__ == "__main__":
-    inputFolder = ""
-    outputFolder = ""
+    inputFolder = "control_corpus"
+    outputFolder = "control_corpus_clean"
     
     remove_direction(inputFolder, outputFolder)
