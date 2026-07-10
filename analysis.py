@@ -2,7 +2,8 @@
 plays = {
     'Comedy': ['asyoulikeit', 'amidsummernightsdream', 'muchadoaboutnothing', 'twelthnight'],
     'Tragedy': ['macbeth', 'othello', 'kinglear', 'hamlet'],
-    'History': ['henryivpart1', 'henryv', 'henryvipart2', 'richardii']
+    'History': ['henryivpart1', 'henryv', 'henryvipart2', 'richardii'],
+    'Testing': []
 }
 
 def read_files_into_string(filenames):
