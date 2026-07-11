@@ -1,6 +1,5 @@
 import nltk
 nltk.download('punkt')
-%matplotlib inline
 
 # prep the data
 plays = {
@@ -38,4 +37,24 @@ plays_by_genre_tokens['Testing'] = ([token.lower() for token in plays_by_genre_t
 
 #Calculating Chi-Squared value
 for genre in genres:
-    joint_corpus = ()
+    ## Building joint corpus
+    joint_corpus = (plays_by_genre_tokens[genre] + plays_by_genre_tokens['Testing'])
+    join_freq_dist = nltk.FreqDist(joint_corpus)
+    most_common = list(join_freq_dist.most_common(500))
+
+    genre_share = (len(plays_by_genre_tokens[genre]) / len(joint_corpus))
+
+    ## Determines the frquency of certain words in genre compared to what would be expected
+    chisquared = 0
+    for word,joint_count in most_common:
+        genre_count = plays_by_genre_tokens[genre].count(word)
+        testing_count = plays_by_genre_tokens['Testing'].count(word)
+
+        expected_genre_count = joint_count * genre_share
+        expected_testing_count = joint_count * (1-genre_share)
+
+    chisquared += ((genre_count - expected_genre_count) * (genre_count - expected_genre_count) / expected_genre_count)
+    chisquared += ((testing_count - expected_testing_count) * (testing_count - expected_testing_count) / expected_testing_count )
+
+    print(f'The Chisquared stat for genre {genre} is {chisquared}')
+
