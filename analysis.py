@@ -1,3 +1,7 @@
+import nltk
+nltk.download('punkt')
+%matplotlib inline
+
 # prep the data
 plays = {
     'Comedy': ['asyoulikeit', 'amidsummernightsdream', 'muchadoaboutnothing', 'twelthnight'],
@@ -19,3 +23,19 @@ for genre, files in plays.items():
 
 for genre in plays:
     print(plays_by_genre[genre][:100])
+
+#Tokenise
+genres = ('Comedy', 'History', 'Tragedy')
+plays_by_genre_tokens = {}
+for genre in genres:
+    tokens = nltk.word_tokenize(plays_by_genre[genre])
+
+# Kilgariff’s Chi-Squared Method
+#Lowercasing
+for genre in genre:
+    plays_by_genre_tokens[genre] = ([token.lower() for token in plays_by_genre_tokens[genre]])
+plays_by_genre_tokens['Testing'] = ([token.lower() for token in plays_by_genre_tokens['Testing']])
+
+#Calculating Chi-Squared value
+for genre in genres:
+    joint_corpus = ()
