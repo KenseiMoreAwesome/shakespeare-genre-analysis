@@ -1,5 +1,14 @@
 import nltk
-nltk.download('punkt', quiet=True)
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', quiet=True)
+
+try:
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt_tab', quiet=True)
 
 # prep the data
 plays = {
