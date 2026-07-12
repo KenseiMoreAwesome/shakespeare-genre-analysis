@@ -1,6 +1,5 @@
 import os
 import re
-import shutil
 
 def remove_direction(inputFolder, outputFolder):
     if not os.path.exists(outputFolder):
@@ -40,7 +39,7 @@ def remove_direction(inputFolder, outputFolder):
     print(f"Cleaned files saved in: {outputFolder}")
 
 if __name__ == "__main__":
-    inputFolder = "control_corpus"
-    outputFolder = "control_corpus_clean"
+    inputFolder = "test_corpus"
+    outputFolder = "test_corpus_clean"
     
     remove_direction(inputFolder, outputFolder)

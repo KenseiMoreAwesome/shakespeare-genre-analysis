@@ -15,14 +15,14 @@ plays = {
     'Comedy': ['asyoulikeit', 'amidsummernightsdream', 'muchadoaboutnothing', 'twelthnight'],
     'Tragedy': ['macbeth', 'othello', 'kinglear', 'hamlet'],
     'History': ['henryivpart1', 'henryv', 'henryvipart2', 'richardii'],
-    'Testing': ['macbeth', 'othello', 'kinglear', 'hamlet', 'asyoulikeit', 'amidsummernightsdream', 'muchadoaboutnothing', 'twelthnight', 'henryivpart1', 'henryv', 'henryvipart2', 'richardii']
+    'Testing': ['macbeth']
 }
 
 def read_files_into_string(filenames):
     strings = []
     for filename in filenames:
         try:
-            with open(f'corpus_clean/{filename}.txt') as f:
+            with open(f'confirmed_corpus_clean/{filename}.txt') as f:
                     strings.append(f.read())
         except FileNotFoundError:
             try:
@@ -67,5 +67,6 @@ for genre in genres:
         if expected_testing_count > 0:
             chisquared += ((testing_count - expected_testing_count) ** 2) / expected_testing_count
 
+    print('Testing')
     print(f'The Chi-squared stat for genre {genre} is {chisquared:.3f}')
 
