@@ -21,8 +21,15 @@ plays = {
 def read_files_into_string(filenames):
     strings = []
     for filename in filenames:
-        with open(f'control_corpus_clean/{filename}.txt') as f:
-            strings.append(f.read())
+        try:
+            with open(f'corpus_clean/{filename}.txt') as f:
+                    strings.append(f.read())
+        except FileNotFoundError:
+            try:
+                with open(f'test_corpus_clean/{filename}.txt') as f:
+                    strings.append(f.read())
+            except FileNotFoundError:
+                print(f"File not found: {filename}.txt")
     return '\n'.join(strings)
     
 plays_by_genre = {}
