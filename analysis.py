@@ -19,7 +19,7 @@ plays = {
 }
 
 def read_files_into_string(filenames):
-    """Load a set of text files and return their combined content."""
+    # Returns combined text from corpus.
     strings = []
     for filename in filenames:
         try:
@@ -35,7 +35,7 @@ def read_files_into_string(filenames):
 
 
 def build_genre_corpora(genre_map):
-    """Create a text corpus for every genre in the mapping."""
+    # Combines whole genre into one corpus
     corpora = {}
     for genre, files in genre_map.items():
         corpora[genre] = read_files_into_string(files)
@@ -43,13 +43,13 @@ def build_genre_corpora(genre_map):
 
 
 def print_corpus_previews(corpora):
-    """Print a short preview of each loaded genre corpus."""
+    #Print preview 
     for genre, text in corpora.items():
         print(f"{genre}: {text[:100]!r}")
 
 
 def tokenize_corpora(corpora):
-    """Tokenize each loaded corpus, preserving lowercasing."""
+    #Tokenise and lowercase each corpus
     return {
         genre: [token.lower() for token in nltk.word_tokenize(text)]
         for genre, text in corpora.items()
@@ -57,7 +57,6 @@ def tokenize_corpora(corpora):
 
 
 def compute_chi_squared(reference_tokens, test_tokens, top_n=500):
-    """Compute Kilgarriff-style chi-squared for a reference genre vs. the test corpus."""
     joint_corpus = reference_tokens + test_tokens
     joint_freq_dist = nltk.FreqDist(joint_corpus)
     most_common = list(joint_freq_dist.most_common(top_n))
